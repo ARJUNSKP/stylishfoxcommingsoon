@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Stylish Fox</title>
+    <link rel="icon" type="image/png" href="Stylish Fox Logo White.png">
+    <!-- Modern Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --primary-hover: #e2e8f0;
+            --bg-color: #000000;
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Left Side Content */
+        .content-side {
+            flex: 1;
+            padding: 4rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            max-width: 55%;
+            box-shadow: 20px 0 50px -10px rgba(0, 0, 0, 1);
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-img {
+            max-width: 200px;
+            margin-bottom: 4rem;
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            animation: fadeUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 520px;
+            animation: fadeUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form */
+        .notify-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeUp 0.8s ease-out 0.6s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .notify-form input {
+            flex: 1;
+            padding: 1.25rem 1.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1.05rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .notify-form input::placeholder {
+            color: rgba(161, 161, 170, 0.6);
+        }
+
+        .notify-form input:focus {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .notify-form button {
+            padding: 1.25rem 2.5rem;
+            border-radius: 4px;
+            border: none;
+            background: #ffffff;
+            color: #000000;
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .notify-form button:hover {
+            background: #d4d4d8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Right Side Scrolling Animation */
+        .gallery-side {
+            flex: 1;
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #000000;
+            position: relative;
+        }
+        
+        .gallery-side::before,
+        .gallery-side::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 15vh;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .gallery-side::before {
+            top: 0;
+            background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0) 100%);
+        }
+        
+        .gallery-side::after {
+            bottom: 0;
+            background: linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .scrolling-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: scrollUp 25s linear infinite;
+        }
+
+        .scrolling-column.reverse {
+            animation: scrollDown 25s linear infinite;
+            transform: translateY(-50%);
+        }
+
+        .gallery-item {
+            width: 100%;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.8);
+            padding-bottom: 150%; 
+            filter: grayscale(20%) contrast(110%);
+            transition: filter 0.5s ease;
+        }
+        
+        .gallery-item:hover {
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(calc(-50% - 0.75rem)); } 
+        }
+        
+        @keyframes scrollDown {
+            0% { transform: translateY(calc(-50% - 0.75rem)); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) {
+            h1 { font-size: 3rem; }
+            .content-side { padding: 3rem 2.5rem; max-width: 60%; }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                display: block; /* Remove flex to stack properly */
+            }
+            .gallery-side {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 1;
+                opacity: 0.35; /* Dim background heavily on mobile for text contrast */
+                padding: 0.75rem;
+                gap: 0.75rem;
+            }
+            .gallery-side::before,
+            .gallery-side::after {
+                height: 10vh; /* Smaller fade gradient on mobile */
+            }
+            .scrolling-column {
+                gap: 0.75rem;
+            }
+            .content-side {
+                position: relative;
+                max-width: 100%;
+                padding: 2.5rem 1.5rem;
+                min-height: 100vh;
+                box-shadow: none;
+                border-right: none;
+                /* Add a glass overlay so text pops over the scrolling images */
+                background: rgba(0, 0, 0, 0.4);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                z-index: 10;
+                align-items: center;
+                text-align: center;
+            }
+            .logo-img {
+                margin: 0 auto 3rem auto;
+                max-width: 180px;
+            }
+            h1 { 
+                font-size: 2.75rem; 
+                margin-bottom: 1rem;
+            }
+            p { 
+                font-size: 1.15rem; 
+                margin-bottom: 2.5rem; 
+            }
+            .notify-form {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .notify-form button {
+                width: 100%;
+                padding: 1.1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="content-side">
+        <img src="Stylish Fox Logo White.png" alt="Stylish Fox Logo" class="logo-img">
+        
+        <h1>Redefining fashion elegance.</h1>
+        <p>A new curated collection of premium dresses, t-shirts, and shirts is coming soon. Subscribe to get early access and exclusive launch offers.</p>
+        
+        <form class="notify-form" onsubmit="event.preventDefault(); alert('Thank you! We will notify you once we launch.');">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Notify Me</button>
+        </form>
+    </div>
+
+    <div class="gallery-side">
+        <!-- Column 1 (Scrolls Up) -->
+        <div class="scrolling-column">
+            <!-- First Set -->
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1495385794356-15371f348c31?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="T-Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1582213709664-8fcd53610996?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80" alt="T-Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=600&q=80" alt="Dress"></div>
+            
+            <!-- Duplicated Set for infinite seamless scroll -->
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1495385794356-15371f348c31?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="T-Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1582213709664-8fcd53610996?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80" alt="T-Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=600&q=80" alt="Dress"></div>
+        </div>
+
+        <!-- Column 2 (Scrolls Down) -->
+        <div class="scrolling-column reverse">
+            <!-- First Set -->
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1550639525-c97d455acf70?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&q=80" alt="Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1520975954732-57dd22299614?w=600&q=80" alt="Apparel"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=600&q=80" alt="Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1515347619152-16e6d4c0b4ba?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80" alt="Shirt"></div>
+            
+            <!-- Duplicated Set for infinite seamless scroll -->
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1550639525-c97d455acf70?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=600&q=80" alt="Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1520975954732-57dd22299614?w=600&q=80" alt="Apparel"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?w=600&q=80" alt="Shirt"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1515347619152-16e6d4c0b4ba?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80" alt="Dress"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80" alt="Shirt"></div>
+        </div>
+    </div>
+</body>
+</html>
